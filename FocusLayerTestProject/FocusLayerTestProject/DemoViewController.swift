@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FocusLayer
 
 class DemoViewController: UIViewController,UIPopoverPresentationControllerDelegate {
 
@@ -76,8 +77,12 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
     
     @IBAction func questionMartkDidTapped(_ sender: Any) {
         //self.reproducingFromFocus(on: questionMark, completionHandler: nil)
-        self.reproducingFromFocus(on: questionMark,text:"test for popover", completionHandler: nil)
+//        self.reproducingFromFocus(on: questionMark, text:"test for popover", completionHandler: nil)
+        let text = "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte."
+        self.reproducingFromFocus(on: questionMark, padding: 4, text: text ,completionHandler: nil)
+
     }
+    
     
     @IBAction func infoButtonDidTapped(_ sender: Any) {
         self.circleFocus(on: infoButton.center, radius: infoButton.frame.width, completionHandler: nil)
@@ -89,7 +94,7 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
             let vc = TextBubbleViewController()
             vc.modalPresentationStyle = .popover
             vc.preferredContentSize = vc.view.systemLayoutSizeFitting(
-                UILayoutFittingCompressedSize
+                UIView.layoutFittingCompressedSize
             )//CGSize(width: 280, height: 50)
             vc.popoverPresentationController?.sourceView = (sender as! UIView)
             vc.popoverPresentationController?.sourceRect = (sender as! UIView).bounds

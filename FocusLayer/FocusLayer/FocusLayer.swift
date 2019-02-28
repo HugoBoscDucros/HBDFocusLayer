@@ -8,9 +8,9 @@
 
 import UIKit
 
-let DEFAULT_FOCUS_ANIMATION_DURATION:CFTimeInterval = 0.6
+public let DEFAULT_FOCUS_ANIMATION_DURATION:CFTimeInterval = 0.6
 
-class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
+public class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
     
     weak var owner:UIView!
     var focusFrame:CGRect!
@@ -37,7 +37,7 @@ class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
     
 //MARK: - focuses
     
-    func circleFocus(on frame:CGRect, padding:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
+    public func circleFocus(on frame:CGRect, padding:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
         let (focusFrame,radius) = self.getCircleFocusFrameAndRadius(for: frame, padding: padding)
         self.focusFrame = focusFrame
         self.currentCornerRadius = radius
@@ -48,31 +48,31 @@ class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
         })
     }
     
-    func circleFocus(on view:UIView, padding:CGFloat, animationDuration:CFTimeInterval, completionHandler:(()->())?) {
+    public func circleFocus(on view:UIView, padding:CGFloat, animationDuration:CFTimeInterval, completionHandler:(()->())?) {
         let frame = self.getAbsoluteFrame(of: view)
         self.circleFocus(on: frame, padding: padding, animationDuration: animationDuration, completionHandler: completionHandler)
     }
     
-    func circleFocus(on center:CGPoint, with radius:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
+    public func circleFocus(on center:CGPoint, with radius:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
         self.focusFrame = self.getCircleFocusFrame(for: center, radius: radius)
         self.currentCornerRadius = radius
         let (startPath, endPath) = self.pathes(focusFrame: focusFrame, cornerRadius: radius)
         self.animate(from:startPath,to: endPath, duration: animationDuration,completionHandler: completionHandler)
     }
     
-    func rectFocus(on frame:CGRect, padding:CGFloat, cornerRadius:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
+    public func rectFocus(on frame:CGRect, padding:CGFloat, cornerRadius:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
         self.focusFrame = self.getRectFocusFrame(for: frame, padding: padding)
         self.currentCornerRadius = cornerRadius
         let (startPath, endPath) = self.pathes(focusFrame: focusFrame, cornerRadius: cornerRadius)
         self.animate(from:startPath,to: endPath, duration: animationDuration,completionHandler: completionHandler)
     }
     
-    func rectFocus(on view:UIView, padding:CGFloat, cornerRadius:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
+    public func rectFocus(on view:UIView, padding:CGFloat, cornerRadius:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
         let frame = self.getAbsoluteFrame(of: view)
         self.rectFocus(on: frame, padding: padding, cornerRadius: cornerRadius, animationDuration: animationDuration, completionHandler: completionHandler)
     }
     
-    func reproducingFormFocus(on view:UIView, padding:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
+    public func reproducingFormFocus(on view:UIView, padding:CGFloat, animationDuration:CFTimeInterval,completionHandler:(()->())?) {
         let frame = self.getAbsoluteFrame(of: view)
         self.focusFrame = self.getRectFocusFrame(for: frame, padding: padding)
         self.currentCornerRadius = self.getPropCornerRadius(from: frame, cornerRadius: view.layer.cornerRadius, to: focusFrame)
@@ -80,7 +80,7 @@ class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
         self.animate(from:startPath,to: endPath, duration: animationDuration,completionHandler: completionHandler)
     }
     
-    func dismiss(animated:Bool, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    public func dismiss(animated:Bool, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         if animated {
             let path = self.ownerPath(from: self.focusFrame, cornerRadius: self.currentCornerRadius)
             self.animate(to: path, duration: animationDuration, completionHandler: {
@@ -264,7 +264,7 @@ class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
 //        popoverPresentationController.backgroundColor = UIColor.green
 //    }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+    public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
     
@@ -273,7 +273,7 @@ class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
 //        return true
 //    }
     
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+    public func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
         self.dismiss(animated: true,completionHandler: nil)
     }
     
@@ -290,39 +290,39 @@ class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
     
 }
 
-extension UIViewController {
+public extension UIViewController {
     
-    func circleFocus(on frame:CGRect, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    public func circleFocus(on frame:CGRect, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.circleFocus(on: frame, padding: padding, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    func circleFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    public func circleFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.circleFocus(on: view, padding: padding, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    func circleFocus(on center:CGPoint, radius:CGFloat, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    public func circleFocus(on center:CGPoint, radius:CGFloat, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.circleFocus(on: center, with: radius, animationDuration: animationDuration, completionHandler: completionHandler)
     }
     
-    func rectFocus(on frame:CGRect, padding:CGFloat = 4, cornerRadius:CGFloat = 5, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    public func rectFocus(on frame:CGRect, padding:CGFloat = 4, cornerRadius:CGFloat = 5, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.rectFocus(on: frame, padding: padding, cornerRadius: cornerRadius, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    func rectFocus(on view:UIView, padding:CGFloat = 4, cornerRadius:CGFloat = 5, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    public func rectFocus(on view:UIView, padding:CGFloat = 4, cornerRadius:CGFloat = 5, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.rectFocus(on: view, padding: padding, cornerRadius: cornerRadius, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    func reproducingFromFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    public func reproducingFromFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.reproducingFormFocus(on: view, padding: padding, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    func removeFocus(animated:Bool, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    public func removeFocus(animated:Bool, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         if let focusLayer = detectFocusLayer() {
             focusLayer.dismiss(animated: true, animationDuration: animationDuration, completionHandler:completionHandler)
         }
@@ -371,23 +371,13 @@ extension PopoverFocusDelegate {
     }
 }
 
-extension UIViewController {
-    func reproducingFromFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,text:String,completionHandler:(()->())?) {
+public extension UIViewController {
+    public func reproducingFromFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,text:String,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
-        //focusLayer.reproducingFormFocus(on: view, padding: padding, animationDuration: animationDuration, completionHandler:completionHandler)
+        
         focusLayer.reproducingFormFocus(on: view, padding: padding, animationDuration: animationDuration) {
             let vc = TextBubbleViewController()
-            vc.modalPresentationStyle = .popover
-            
-            vc.popoverPresentationController?.sourceView = view.superview!
-            
-            vc.popoverPresentationController?.sourceRect = focusLayer.focusFrame//view.frame
-            vc.popoverPresentationController?.permittedArrowDirections = .any
-            vc.popoverPresentationController?.delegate = focusLayer
-            vc.popoverPresentationController?.backgroundColor = vc.view.backgroundColor
-            vc.label.text = text
-            vc.preferredContentSize = vc.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)//CGSize(width: 100, height: 50)//vc.view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-            //let presenter = self.navigationController ?? self
+            vc.preparePopover(for: view.superview!, with: text, focusLayer: focusLayer)
             self.present(vc, animated: true, completion: completionHandler)
         }
     }
@@ -411,10 +401,37 @@ extension CGSize {
     static func -= ( left: inout CGSize, right: CGSize) {
         left = left - right
     }
+    
+    static func + (left: CGSize, right: CGSize) -> CGSize {
+        return CGSize(width: left.width + right.width, height: left.height + right.height)
+    }
+    
+ 
 }
 
 extension CGRect {
     var center:CGPoint {
         return CGPoint(x: (self.origin.x + self.width/2.0), y: (self.origin.y + self.height/2.0 ))
     }
+}
+
+
+
+extension UILabel {
+    
+    func getBoundingRect() -> CGSize? {
+        guard
+            let text = self.text,
+            let font = self.font
+        else { return nil }
+        
+        let box = text.boundingRect(
+            with: self.frame.size,
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: font],
+            context: nil
+        )
+        return CGSize(width: ceil(box.size.width), height: ceil(box.size.height))
+    }
+    
 }

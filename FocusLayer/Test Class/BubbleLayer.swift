@@ -8,9 +8,9 @@
 
 import UIKit
 
-class Pipo:NSObject {
-    var price:Float
-    override init() {
+public class Pipo:NSObject {
+    public var price:Float
+    override public init() {
         self.price = 0
         super.init()
     }

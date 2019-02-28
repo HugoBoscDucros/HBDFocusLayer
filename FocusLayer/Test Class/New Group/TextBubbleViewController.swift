@@ -8,22 +8,22 @@
 
 import UIKit
 
-class TextBubbleViewController: UIViewController {
+public class TextBubbleViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     
-    var text:String?
+    public var text:String?
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.green
-        if let text = self.text {
-            self.label.text = text
-        }
+//        if let text = self.text {
+//            self.label.text = text
+//        }
         //self.preferredContentSize = CGSize(width: 100, height: 40)
     }
     
-    init() {
-        super.init(nibName: "TextBubbleViewController", bundle: nil)
+    public init() {
+        super.init(nibName: "TextBubbleViewController", bundle: Bundle(for: TextBubbleViewController.self))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,19 +31,30 @@ class TextBubbleViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.dismiss(animated: true, completion: nil)
     }
     
-//    private func size(for view:UIView) -> CGSize {
-//        return view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-//    }
+    func preparePopover(for sourceview: UIView, with text: String, focusLayer: FocusLayer) -> Void {
+        self.modalPresentationStyle = .popover
+        self.popoverPresentationController?.sourceView = sourceview.superview!
+        self.popoverPresentationController?.sourceRect = focusLayer.focusFrame//view.frame
+        self.popoverPresentationController?.permittedArrowDirections = .any
+        self.popoverPresentationController?.delegate = focusLayer
+        self.popoverPresentationController?.backgroundColor = self.view.backgroundColor
+        self.label.text = text
+        if let textRect = self.label.getBoundingRect() {
+            let margins = CGSize(width: 16, height: 16) // Margins = Left,Top,Right,Bottom constraints constants of the label
+            self.preferredContentSize = textRect + margins
+        }
+    }
     
-    override func systemLayoutFittingSizeDidChange(forChildContentContainer container: UIContentContainer) {
+    
+    override public func systemLayoutFittingSizeDidChange(forChildContentContainer container: UIContentContainer) {
         view.setNeedsLayout()
     }
     
-    override func viewWillLayoutSubviews() {
+    override public func viewWillLayoutSubviews() {
         let size = self.label.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         var frame = self.label.frame
         frame.size = size
