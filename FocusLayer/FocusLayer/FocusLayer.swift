@@ -418,12 +418,11 @@ extension CGRect {
 
 
 extension UILabel {
-    
-    func getBoundingRect() -> CGSize? {
+    var textBoundingRect : CGSize {
         guard
             let text = self.text,
             let font = self.font
-        else { return nil }
+            else { return .zero }
         
         let box = text.boundingRect(
             with: self.frame.size,
@@ -433,5 +432,10 @@ extension UILabel {
         )
         return CGSize(width: ceil(box.size.width), height: ceil(box.size.height))
     }
-    
+}
+
+extension CGSize {
+    var area : CGFloat {
+        return self.width * self.height
+    }
 }

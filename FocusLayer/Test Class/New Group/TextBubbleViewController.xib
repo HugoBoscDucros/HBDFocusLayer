@@ -18,6 +18,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TextBubbleViewController" customModule="FocusLayer" customModuleProvider="target">
             <connections>
                 <outlet property="label" destination="NLP-9K-Zn9" id="CxF-cJ-Tpc"/>
+                <outlet property="labelBottomConstraint" destination="f6K-j3-FvL" id="N4v-Vr-dWg"/>
+                <outlet property="labelLeadingConstraint" destination="s8v-9M-UZw" id="iuH-r8-NZu"/>
+                <outlet property="labelTopConstraint" destination="eNA-86-QIC" id="MOd-jZ-VW9"/>
+                <outlet property="labelTrailingConstraint" destination="nF9-2N-nH0" id="rwg-VG-xw7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
