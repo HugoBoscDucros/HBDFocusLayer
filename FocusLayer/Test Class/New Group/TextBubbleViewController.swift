@@ -18,6 +18,7 @@ public class TextBubbleViewController: UIViewController {
     
     public var text:String?
     
+    
     private var bubbleMargins : CGSize {
         let width = self.labelLeadingConstraint.constant + self.labelTrailingConstraint.constant
         let height = self.labelTopConstraint.constant + self.labelBottomConstraint.constant
@@ -39,7 +40,11 @@ public class TextBubbleViewController: UIViewController {
     }
     
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.dismiss(animated: true, completion: nil)
+//        let delegate = self.popoverPresentationController?.delegate as? FocusLayer
+//        self.dismiss(animated: true, completion: {
+//            delegate?.dismiss(animated: true, completionHandler: nil)
+//        })
+        
     }
     
     func preparePopover(for sourceview: UIView, with text: String, focusLayer: FocusLayer) -> Void {
@@ -50,13 +55,13 @@ public class TextBubbleViewController: UIViewController {
         self.popoverPresentationController?.delegate = focusLayer
         self.popoverPresentationController?.backgroundColor = self.view.backgroundColor
         self.label.text = text
-        self.preferredContentSize = self.transformRectIfNeeded(self.label.textBoundingRect, fixedWidth: 200) + self.bubbleMargins
+        self.preferredContentSize = self.transformRectIfNeeded(self.label.textBoundingSize, fixedWidth: 200) + self.bubbleMargins
     }
     
     
     private func transformRectIfNeeded(_ original: CGSize, fixedWidth: CGFloat) -> CGSize {
         if original.width > fixedWidth {
-            return CGSize(width: fixedWidth, height: original.area / fixedWidth)
+            return self.label.textBoundingSizeForConstrainted(width: fixedWidth)
         } else {
             return original
         }

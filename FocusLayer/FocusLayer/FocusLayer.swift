@@ -328,7 +328,7 @@ public extension UIViewController {
         }
     }
     
-    private func getFocusLayerIfPossible() -> FocusLayer {
+   func getFocusLayerIfPossible() -> FocusLayer {
         let focusLayer = self.detectFocusLayer() ?? FocusLayer(owner: self.highestView)
         return focusLayer //?? FocusLayer(owner: self.view)
     }
@@ -418,24 +418,94 @@ extension CGRect {
 
 
 extension UILabel {
-    var textBoundingRect : CGSize {
+ 
+    
+    func textBoundingRect(for size: CGSize) -> CGRect {
         guard
             let text = self.text,
             let font = self.font
-            else { return .zero }
+        else { return .zero }
         
-        let box = text.boundingRect(
-            with: self.frame.size,
+        let rect = text.boundingRect(
+            with: size,
             options: .usesLineFragmentOrigin,
             attributes: [NSAttributedString.Key.font: font],
             context: nil
         )
-        return CGSize(width: ceil(box.size.width), height: ceil(box.size.height))
+        return rect
     }
+    
+    var textBoundingSize : CGSize {
+        let rect = self.textBoundingRect(for: self.frame.size)
+        return CGSize(width: ceil(rect.size.width), height: ceil(rect.size.height))
+    }
+    
+    
+    func textBoundingSizeForConstrainted(width: CGFloat) -> CGSize {
+        let size = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let rect = self.textBoundingRect(for: size)
+        return CGSize(width: width, height: ceil(rect.height))
+    }
+    
+    func textBoundingSizeForConstrainted(height: CGFloat) -> CGSize {
+        let size = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let rect = self.textBoundingRect(for: size)
+        return CGSize(width: ceil(rect.width), height: height)
+    }
+    
 }
 
 extension CGSize {
     var area : CGFloat {
         return self.width * self.height
     }
+}
+
+
+//////// ActionManager
+
+public struct FocusLayerAction {
+    
+    let view: UIView!
+    let text: String
+    
+    public init(view: UIView!, text: String) {
+        self.view = view
+        self.text = text
+    }
+    
+}
+
+
+
+public class FocusLayerManager {
+    
+    let actions : [FocusLayerAction]
+    
+    var currentActionIndex: Int = 0
+    
+    let focusLayer : FocusLayer?
+    
+    var currentAction : FocusLayerAction {
+        return self.actions[currentActionIndex]
+    }
+    
+    weak var delegate : UIViewController?
+    
+    public init (delegate: UIViewController, actions: FocusLayerAction...) {
+        self.delegate = delegate
+        self.actions = actions
+        self.focusLayer = self.delegate?.getFocusLayerIfPossible()
+        self.delegate?.reproducingFromFocus(on: self.currentAction.view, text: self.currentAction.text, completionHandler: nil)
+    }
+    
+    public func nextAction() {
+        if self.currentActionIndex < actions.count {
+            self.currentActionIndex += 1
+            self.delegate?.reproducingFromFocus(on: self.currentAction.view, text: self.currentAction.text, completionHandler: nil)
+        } else {
+            self.focusLayer?.dismiss(animated: true, completionHandler: nil)
+        }
+    }
+    
 }
