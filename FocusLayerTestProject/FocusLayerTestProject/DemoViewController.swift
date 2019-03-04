@@ -38,9 +38,9 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
         inSubview.layer.borderWidth = 1
         
         self.ActionManager =  FocusLayerManager(delegate: self, actions:
-            FocusLayerAction(view: self.pipo, text: "Yolo"),
-            FocusLayerAction(view: self.helloWorld, text: "Yolo"),
-            FocusLayerAction(view: self.questionMark, text: "Yolo")
+            FocusLayerAction(view: self.pipo, text: "First Setp yataaaaa!"),
+            FocusLayerAction(view: self.helloWorld, text: "Hello World! hello hello ??!!!"),
+            FocusLayerAction(view: self.questionMark, text: "Any question ? call me I surely got the answer ;)")
         )
     }
     
@@ -69,10 +69,11 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
     
     @IBAction func pipoDidTapped(_ sender: Any) {
 //        self.reproducingFromFocus(on: pipo, completionHandler: nil)
-        let text = "Je suis un texte random, je n'ai pas d'autre raison d'exister que de remplir un foutu popover controller, YOLO !!!"
-        self.reproducingFromFocus(on: pipo, padding: 4, text: text ,completionHandler: {
-            self.reproducingFromFocus(on: self.tatouti, text: "NSM", completionHandler: nil)
-        })
+//        let text = "Je suis un texte random, je n'ai pas d'autre raison d'exister que de remplir un foutu popover controller, YOLO !!!"
+//        self.reproducingFromFocus(on: pipo, padding: 4, text: text ,completionHandler: {
+//            self.reproducingFromFocus(on: self.tatouti, text: "NSM", completionHandler: nil)
+//        })
+        self.ActionManager?.start()
     }
     
     @IBAction func tatoutiDidTapped(_ sender: Any) {

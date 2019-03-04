@@ -27,9 +27,9 @@ public class TextBubbleViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.green
+//        self.view.backgroundColor = UIColor.green
     }
-    
+     
     public init() {
         super.init(nibName: "TextBubbleViewController", bundle: Bundle(for: TextBubbleViewController.self))
     }

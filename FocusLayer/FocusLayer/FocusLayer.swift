@@ -274,7 +274,7 @@ public class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
 //    }
     
     public func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        self.dismiss(animated: true,completionHandler: nil)
+//        self.dismiss(animated: true,completionHandler: nil)
     }
     
     
@@ -462,50 +462,5 @@ extension CGSize {
 }
 
 
-//////// ActionManager
-
-public struct FocusLayerAction {
-    
-    let view: UIView!
-    let text: String
-    
-    public init(view: UIView!, text: String) {
-        self.view = view
-        self.text = text
-    }
-    
-}
 
 
-
-public class FocusLayerManager {
-    
-    let actions : [FocusLayerAction]
-    
-    var currentActionIndex: Int = 0
-    
-    let focusLayer : FocusLayer?
-    
-    var currentAction : FocusLayerAction {
-        return self.actions[currentActionIndex]
-    }
-    
-    weak var delegate : UIViewController?
-    
-    public init (delegate: UIViewController, actions: FocusLayerAction...) {
-        self.delegate = delegate
-        self.actions = actions
-        self.focusLayer = self.delegate?.getFocusLayerIfPossible()
-        self.delegate?.reproducingFromFocus(on: self.currentAction.view, text: self.currentAction.text, completionHandler: nil)
-    }
-    
-    public func nextAction() {
-        if self.currentActionIndex < actions.count {
-            self.currentActionIndex += 1
-            self.delegate?.reproducingFromFocus(on: self.currentAction.view, text: self.currentAction.text, completionHandler: nil)
-        } else {
-            self.focusLayer?.dismiss(animated: true, completionHandler: nil)
-        }
-    }
-    
-}
