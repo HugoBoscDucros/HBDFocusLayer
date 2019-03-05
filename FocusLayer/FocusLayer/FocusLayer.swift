@@ -17,6 +17,7 @@ public class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
     var currentCornerRadius:CGFloat!
     var isAnimating = false
     var TextLayer:BubbleLayer?
+    var popoverCompletion:(()->())?
 
     
 //MARK: - Init
@@ -274,6 +275,8 @@ public class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
 //    }
     
     public func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        self.popoverCompletion?()
+        self.popoverCompletion = nil
 //        self.dismiss(animated: true,completionHandler: nil)
     }
     
@@ -374,11 +377,11 @@ extension PopoverFocusDelegate {
 public extension UIViewController {
     public func reproducingFromFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,text:String,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
-        
         focusLayer.reproducingFormFocus(on: view, padding: padding, animationDuration: animationDuration) {
+            focusLayer.popoverCompletion = completionHandler
             let vc = TextBubbleViewController()
             vc.preparePopover(for: view.superview!, with: text, focusLayer: focusLayer)
-            self.present(vc, animated: true, completion: completionHandler)
+            self.present(vc, animated: true, completion: nil)
         }
     }
 }

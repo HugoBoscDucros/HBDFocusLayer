@@ -37,7 +37,7 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
         inSubview.layer.borderColor = UIColor.blue.cgColor
         inSubview.layer.borderWidth = 1
         
-        self.ActionManager =  FocusLayerManager(delegate: self, actions:
+        self.ActionManager =  FocusLayerManager(actions:
             FocusLayerAction(view: self.pipo, text: "First Setp yataaaaa!"),
             FocusLayerAction(view: self.helloWorld, text: "Hello World! hello hello ??!!!"),
             FocusLayerAction(view: self.questionMark, text: "Any question ? call me I surely got the answer ;)")
@@ -73,7 +73,7 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
 //        self.reproducingFromFocus(on: pipo, padding: 4, text: text ,completionHandler: {
 //            self.reproducingFromFocus(on: self.tatouti, text: "NSM", completionHandler: nil)
 //        })
-        self.ActionManager?.start()
+        self.ActionManager?.start(sender: self)
     }
     
     @IBAction func tatoutiDidTapped(_ sender: Any) {
@@ -123,8 +123,8 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.removeFocus(animated: true, completionHandler: nil)
-        self.ActionManager?.nextAction()
+        //self.removeFocus(animated: true, completionHandler: nil)
+        //self.ActionManager?.nextAction()
     }
     
     @IBAction func inSubviewDidTapped(_ sender: Any) {
