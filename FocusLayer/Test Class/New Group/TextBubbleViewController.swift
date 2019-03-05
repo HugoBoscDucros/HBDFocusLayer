@@ -27,7 +27,7 @@ public class TextBubbleViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.backgroundColor = UIColor.green
+        self.view.backgroundColor = .clear
     }
      
     public init() {
@@ -48,6 +48,7 @@ public class TextBubbleViewController: UIViewController {
     }
     
     func preparePopover(for sourceview: UIView, with text: String, focusLayer: FocusLayer) -> Void {
+        
         self.modalPresentationStyle = .popover
         self.popoverPresentationController?.sourceView = sourceview.superview!
         self.popoverPresentationController?.sourceRect = focusLayer.focusFrame//view.frame
@@ -55,7 +56,9 @@ public class TextBubbleViewController: UIViewController {
         self.popoverPresentationController?.delegate = focusLayer
         self.popoverPresentationController?.backgroundColor = self.view.backgroundColor
         self.label.text = text
-        self.preferredContentSize = self.transformRectIfNeeded(self.label.textBoundingSize, fixedWidth: 200) + self.bubbleMargins
+        self.preferredContentSize = self.transformRectIfNeeded(self.label.textBoundingSize, fixedWidth: 170) + self.bubbleMargins
+        self.popoverPresentationController?.backgroundColor = .white
+       
     }
     
     
@@ -63,9 +66,10 @@ public class TextBubbleViewController: UIViewController {
         if original.width > fixedWidth {
             return self.label.textBoundingSizeForConstrainted(width: fixedWidth)
         } else {
-            return original
+            return self.label.textBoundingSizeForConstrainted(height: 35)
         }
     }
+
     
     
     override public func systemLayoutFittingSizeDidChange(forChildContentContainer container: UIContentContainer) {

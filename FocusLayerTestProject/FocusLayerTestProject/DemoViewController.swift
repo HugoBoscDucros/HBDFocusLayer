@@ -37,11 +37,9 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
         inSubview.layer.borderColor = UIColor.blue.cgColor
         inSubview.layer.borderWidth = 1
         
-        self.ActionManager =  FocusLayerManager(actions:
-            FocusLayerAction(view: self.pipo, text: "First Setp yataaaaa!"),
-            FocusLayerAction(view: self.helloWorld, text: "Hello World! hello hello ??!!!"),
-            FocusLayerAction(view: self.questionMark, text: "Any question ? call me I surely got the answer ;)")
-        )
+//        self.ActionManager =  FocusLayerManager(actions:
+//        
+//        )
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,7 +71,18 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
 //        self.reproducingFromFocus(on: pipo, padding: 4, text: text ,completionHandler: {
 //            self.reproducingFromFocus(on: self.tatouti, text: "NSM", completionHandler: nil)
 //        })
-        self.ActionManager?.start(sender: self)
+//        self.ActionManager?.start(sender: self)
+        FocusLayerManager.run(sender: self, actions: [
+            FocusLayerAction(view: self.pipo, text: "Lolilol"),
+            FocusLayerAction(view: self.helloWorld, text: "Hello World! hello hello ??!!!"),
+            FocusLayerAction(view: self.questionMark, text: "Any question ? call me I surely got the answer ;)"),
+            FocusLayerAction(view: self.inSubview, text: "loloskjflm qkslF QBSF kjqbsd"),
+            FocusLayerAction(view: self.infoButton, text: " QSFH QKF       QKHFLS Qskhsq :KQS"),
+            FocusLayerAction(view: self.validate, text: ":SDFLQDSFBL=QK Q:FN QS:FJ"),
+            FocusLayerAction(view: self.pipo, text: "K:JQsb kqsF"),
+            FocusLayerAction(view: self.questionMark, text: "Hello World! hello hello ??!!!"),
+            FocusLayerAction(view: self.questionMark, text: "Any question ? call me I surely got the answer ;)")
+        ])
     }
     
     @IBAction func tatoutiDidTapped(_ sender: Any) {

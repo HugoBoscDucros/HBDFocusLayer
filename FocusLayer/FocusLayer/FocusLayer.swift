@@ -269,10 +269,10 @@ public class FocusLayer:CAShapeLayer,UIPopoverPresentationControllerDelegate {
         return .none
     }
     
-//    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-//        //self.dismiss(animated: true,completionHandler: nil)
-//        return true
-//    }
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        //self.dismiss(animated: true,completionHandler: nil)
+        return true
+    }
     
     public func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
         self.popoverCompletion?()

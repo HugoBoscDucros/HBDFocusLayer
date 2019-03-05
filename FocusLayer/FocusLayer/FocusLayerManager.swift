@@ -25,44 +25,9 @@ public struct FocusLayerAction {
 
 public class FocusLayerManager {
     
-    let actions : [FocusLayerAction]
-    
-    //var currentActionIndex: Int = 0
     
     
-//    var currentAction : FocusLayerAction? {
-//        let check = self.actions.indices.contains(currentActionIndex)
-//        if check {
-//            return self.actions[currentActionIndex]
-//        }
-//        return nil
-//    }
-    
-    //weak var delegate : UIViewController?
-    
-    public init ( actions: FocusLayerAction...) {
-        //self.delegate = delegate
-        self.actions = actions
-    }
-    
-    public func start(sender:UIViewController) -> Void {
-        self.run(sender: sender, actions: self.actions)
-        //self.nextAction()
-    }
-    
-//    public func nextAction() -> Void {
-//        if let focusLayer = self.delegate?.getFocusLayerIfPossible() {
-//            guard let action = self.currentAction else {
-//                self.currentActionIndex = 0
-//                focusLayer.dismiss(animated: true, completionHandler: nil)
-//                return
-//            }
-//            self.currentActionIndex += 1
-//            self.delegate?.reproducingFromFocus(on: action.view, text: action.text, completionHandler: nil)
-//        }
-//    }
-    
-    private func run(sender:UIViewController, actions:[FocusLayerAction]) {
+     static public func run(sender:UIViewController, actions:[FocusLayerAction]) {
         guard let action = actions.first else {
             return
         }
