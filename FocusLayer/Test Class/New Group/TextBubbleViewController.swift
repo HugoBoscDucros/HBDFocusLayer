@@ -9,19 +9,27 @@
 import UIKit
 
 public class TextBubbleViewController: UIViewController {
+    
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var labelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelLeadingConstraint: NSLayoutConstraint!
     
     public var text:String?
     
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.green
-//        if let text = self.text {
-//            self.label.text = text
-//        }
-        //self.preferredContentSize = CGSize(width: 100, height: 40)
+    
+    private var bubbleMargins : CGSize {
+        let width = self.labelLeadingConstraint.constant + self.labelTrailingConstraint.constant
+        let height = self.labelTopConstraint.constant + self.labelBottomConstraint.constant
+        return CGSize(width: width, height: height)
     }
     
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .clear
+    }
+     
     public init() {
         super.init(nibName: "TextBubbleViewController", bundle: Bundle(for: TextBubbleViewController.self))
     }
@@ -32,10 +40,15 @@ public class TextBubbleViewController: UIViewController {
     }
     
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.dismiss(animated: true, completion: nil)
+//        let delegate = self.popoverPresentationController?.delegate as? FocusLayer
+//        self.dismiss(animated: true, completion: {
+//            delegate?.dismiss(animated: true, completionHandler: nil)
+//        })
+        
     }
     
     func preparePopover(for sourceview: UIView, with text: String, focusLayer: FocusLayer) -> Void {
+        
         self.modalPresentationStyle = .popover
         self.popoverPresentationController?.sourceView = sourceview.superview!
         self.popoverPresentationController?.sourceRect = focusLayer.focusFrame//view.frame
@@ -43,11 +56,20 @@ public class TextBubbleViewController: UIViewController {
         self.popoverPresentationController?.delegate = focusLayer
         self.popoverPresentationController?.backgroundColor = self.view.backgroundColor
         self.label.text = text
-        if let textRect = self.label.getBoundingRect() {
-            let margins = CGSize(width: 16, height: 16) // Margins = Left,Top,Right,Bottom constraints constants of the label
-            self.preferredContentSize = textRect + margins
+        self.preferredContentSize = self.transformRectIfNeeded(self.label.textBoundingSize, fixedWidth: 170) + self.bubbleMargins
+        self.popoverPresentationController?.backgroundColor = .white
+       
+    }
+    
+    
+    private func transformRectIfNeeded(_ original: CGSize, fixedWidth: CGFloat) -> CGSize {
+        if original.width > fixedWidth {
+            return self.label.textBoundingSizeForConstrainted(width: fixedWidth)
+        } else {
+            return self.label.textBoundingSizeForConstrainted(height: 35)
         }
     }
+
     
     
     override public func systemLayoutFittingSizeDidChange(forChildContentContainer container: UIContentContainer) {
@@ -72,3 +94,6 @@ public class TextBubbleViewController: UIViewController {
     */
 
 }
+
+
+

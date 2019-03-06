@@ -20,6 +20,10 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
     @IBOutlet weak var inSubview: UIButton!
     
     
+    var ActionManager : FocusLayerManager?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Demo"
@@ -32,6 +36,10 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
         inSubview.layer.cornerRadius = 8
         inSubview.layer.borderColor = UIColor.blue.cgColor
         inSubview.layer.borderWidth = 1
+        
+//        self.ActionManager =  FocusLayerManager(actions:
+//        
+//        )
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,11 +66,28 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
 //MARK: - Actions
     
     @IBAction func pipoDidTapped(_ sender: Any) {
-        self.reproducingFromFocus(on: pipo, completionHandler: nil)
+//        self.reproducingFromFocus(on: pipo, completionHandler: nil)
+//        let text = "Je suis un texte random, je n'ai pas d'autre raison d'exister que de remplir un foutu popover controller, YOLO !!!"
+//        self.reproducingFromFocus(on: pipo, padding: 4, text: text ,completionHandler: {
+//            self.reproducingFromFocus(on: self.tatouti, text: "NSM", completionHandler: nil)
+//        })
+//        self.ActionManager?.start(sender: self)
+        FocusLayerManager.run(sender: self, actions: [
+            FocusLayerAction(view: self.pipo, text: "Lolilol"),
+            FocusLayerAction(view: self.helloWorld, text: "Hello World! hello hello ??!!!"),
+            FocusLayerAction(view: self.questionMark, text: "Any question ? call me I surely got the answer ;)"),
+            FocusLayerAction(view: self.inSubview, text: "loloskjflm qkslF QBSF kjqbsd"),
+            FocusLayerAction(view: self.infoButton, text: " QSFH QKF       QKHFLS Qskhsq :KQS"),
+            FocusLayerAction(view: self.validate, text: ":SDFLQDSFBL=QK Q:FN QS:FJ"),
+            FocusLayerAction(view: self.pipo, text: "K:JQsb kqsF"),
+            FocusLayerAction(view: self.questionMark, text: "Hello World! hello hello ??!!!"),
+            FocusLayerAction(view: self.questionMark, text: "Any question ? call me I surely got the answer ;)")
+        ])
     }
     
     @IBAction func tatoutiDidTapped(_ sender: Any) {
         self.rectFocus(on: tatouti.frame,cornerRadius:1, completionHandler: nil)
+//        self.reproducingFromFocus(on: tatouti, padding: 4, text: "Le ", completionHandler: nil)
     }
     
     @IBAction func helloWorldDidTapped(_ sender: Any) {
@@ -78,7 +103,7 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
     @IBAction func questionMartkDidTapped(_ sender: Any) {
         //self.reproducingFromFocus(on: questionMark, completionHandler: nil)
 //        self.reproducingFromFocus(on: questionMark, text:"test for popover", completionHandler: nil)
-        let text = "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte."
+        let text = "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500 "
         self.reproducingFromFocus(on: questionMark, padding: 4, text: text ,completionHandler: nil)
 
     }
@@ -107,7 +132,8 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.removeFocus(animated: true, completionHandler: nil)
+        //self.removeFocus(animated: true, completionHandler: nil)
+        //self.ActionManager?.nextAction()
     }
     
     @IBAction func inSubviewDidTapped(_ sender: Any) {
