@@ -26,7 +26,7 @@ public struct TutorialAction {
 public class TutorialAnimator {
     
 
-    static public func run(sender: UIViewController, actions: [TutorialAction], completion: (()->())?) -> Void {
+    static public func run(sender: UIViewController, actions: [TutorialAction], completion: @escaping() -> Void) -> Void {
         guard let action = actions.first else {
             return
         }
@@ -34,10 +34,10 @@ public class TutorialAnimator {
             if actions.count > 1 {
                 var newActions = actions
                 newActions.removeFirst()
-                self.run(sender: sender, actions: newActions, completion: nil)
+                self.run(sender: sender, actions: newActions, completion: completion)
             } else {
                 sender.removeFocus(animated: true, completionHandler: nil)
-                completion?()
+                completion()
             }
         }
     }
