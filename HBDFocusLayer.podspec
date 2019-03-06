@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = 'HBDFocusLayer'
-s.version          = '1.0'
+s.version          = '1.1'
 s.summary          = 'HBDFocusLayer'
 
 s.description      = 'Open source library. Focus Layer.'
