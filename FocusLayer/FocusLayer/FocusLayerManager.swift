@@ -9,7 +9,7 @@
 import UIKit
 
 
-public struct FocusLayerAction {
+public struct TutorialAction {
     
     let view: UIView!
     let text: String
@@ -23,11 +23,10 @@ public struct FocusLayerAction {
 
 
 
-public class FocusLayerManager {
+public class TutorialAnimator {
     
-    
-    
-     static public func run(sender:UIViewController, actions:[FocusLayerAction]) {
+
+     static public func run(sender: UIViewController, actions: [TutorialAction]) {
         guard let action = actions.first else {
             return
         }
