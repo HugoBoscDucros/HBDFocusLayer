@@ -26,7 +26,7 @@ public struct TutorialAction {
 public class TutorialAnimator {
     
 
-     static public func run(sender: UIViewController, actions: [TutorialAction]) {
+    static public func run(sender: UIViewController, actions: [TutorialAction], completion: @escaping() -> Void) -> Void {
         guard let action = actions.first else {
             return
         }
@@ -37,6 +37,7 @@ public class TutorialAnimator {
                 self.run(sender: sender, actions: newActions)
             } else {
                 sender.removeFocus(animated: true, completionHandler: nil)
+                completion()
             }
         }
     }
