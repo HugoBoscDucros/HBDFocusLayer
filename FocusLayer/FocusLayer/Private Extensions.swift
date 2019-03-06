@@ -9,19 +9,7 @@
 import UIKit
 
 
-//MARK: - UIViewController
 
-public extension UIViewController {
-    public func reproducingFromFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,text:String,completionHandler:(()->())?) {
-        let focusLayer = self.getFocusLayerIfPossible()
-        focusLayer.reproducingFormFocus(on: view, padding: padding, animationDuration: animationDuration) {
-            focusLayer.popoverCompletion = completionHandler
-            let vc = TextBubbleViewController()
-            vc.preparePopover(for: view.superview!, with: text, focusLayer: focusLayer)
-            self.present(vc, animated: true, completion: nil)
-        }
-    }
-}
 
 
 

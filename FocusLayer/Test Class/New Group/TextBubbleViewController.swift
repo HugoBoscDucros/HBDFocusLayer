@@ -47,10 +47,10 @@ public class TextBubbleViewController: UIViewController {
         
     }
     
-    func preparePopover(for sourceview: UIView, with text: String, focusLayer: FocusLayer) -> Void {
+    func preparePopover(with text: String, focusLayer: FocusLayer) -> Void {
         
         self.modalPresentationStyle = .popover
-        self.popoverPresentationController?.sourceView = sourceview.superview!
+        self.popoverPresentationController?.sourceView = focusLayer.owner
         self.popoverPresentationController?.sourceRect = focusLayer.focusFrame//view.frame
         self.popoverPresentationController?.permittedArrowDirections = .any
         self.popoverPresentationController?.delegate = focusLayer
@@ -60,6 +60,8 @@ public class TextBubbleViewController: UIViewController {
         self.popoverPresentationController?.backgroundColor = .white
        
     }
+    
+    
     
     
     private func transformRectIfNeeded(_ original: CGSize, fixedWidth: CGFloat) -> CGSize {
