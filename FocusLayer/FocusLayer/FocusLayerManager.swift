@@ -107,6 +107,7 @@ public class TutorialAnimator {
             self.actions.removeFirst()
             self.run(sender: sender, completion: completion)
         } else {
+            self.actions.removeFirst()
             sender.removeFocus(animated: true, completionHandler: nil)
             completion()
         }
