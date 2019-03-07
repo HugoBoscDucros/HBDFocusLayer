@@ -234,6 +234,7 @@ public class FocusLayer : CAShapeLayer, UIPopoverPresentationControllerDelegate 
     }
     
     private func getPropCornerRadius(from:CGRect, cornerRadius:CGFloat, to:CGRect) -> CGFloat {
+        if cornerRadius == 0 { return 1.0 }
         let startDiag:CGFloat = sqrt(pow(from.width, 2) + pow(from.height, 2))
         let endDiag:CGFloat = sqrt(pow(to.width, 2) + pow(to.height, 2))
         let diagProp = endDiag/startDiag

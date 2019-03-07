@@ -43,6 +43,9 @@ public class TutorialAnimator {
         self.actions.append(Action(view: nil, point: nil, frame: frame, diameter: nil, text: text))
     }
     
+    public func cleanActions() {
+        self.actions = [Action]()
+    }
  
     //MARK: - Animator Engine
 
