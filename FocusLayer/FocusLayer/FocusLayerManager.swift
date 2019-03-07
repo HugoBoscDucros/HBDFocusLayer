@@ -106,12 +106,15 @@ public class TutorialAnimator {
     }
     
     private func focusCompletion(sender: UIViewController, completion: @escaping()->()) -> Void {
+        sender.view.isUserInteractionEnabled = false
         if self.actions.count > 1 {
             self.actions.removeFirst()
             self.run(sender: sender, completion: completion)
         } else {
             self.actions.removeFirst()
-            sender.removeFocus(animated: true, completionHandler: nil)
+            sender.removeFocus(animated: true, completionHandler: {
+                sender.view.isUserInteractionEnabled = true
+            })
             completion()
         }
     }
