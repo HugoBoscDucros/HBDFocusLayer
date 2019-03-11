@@ -12,7 +12,7 @@
 		A5C90C1C222688B90099AF6E /* BubbleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C90C1B222688B90099AF6E /* BubbleLayer.swift */; };
 		A5C90C222226898D0099AF6E /* TextBubbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C90C202226898D0099AF6E /* TextBubbleViewController.swift */; };
 		A5C90C232226898D0099AF6E /* TextBubbleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5C90C212226898D0099AF6E /* TextBubbleViewController.xib */; };
-		FBC6FCF322298DC70000AD81 /* FocusLayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC6FCF222298DC70000AD81 /* FocusLayerManager.swift */; };
+		FBC6FCF322298DC70000AD81 /* TutorialAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC6FCF222298DC70000AD81 /* TutorialAnimator.swift */; };
 		FBF05EC4222FC81600460AF8 /* Private Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF05EC3222FC81600460AF8 /* Private Extensions.swift */; };
 		FBF05EC6222FC8BC00460AF8 /* Public Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF05EC5222FC8BC00460AF8 /* Public Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -25,7 +25,7 @@
 		A5C90C1B222688B90099AF6E /* BubbleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleLayer.swift; sourceTree = "<group>"; };
 		A5C90C202226898D0099AF6E /* TextBubbleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBubbleViewController.swift; sourceTree = "<group>"; };
 		A5C90C212226898D0099AF6E /* TextBubbleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextBubbleViewController.xib; sourceTree = "<group>"; };
-		FBC6FCF222298DC70000AD81 /* FocusLayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusLayerManager.swift; sourceTree = "<group>"; };
+		FBC6FCF222298DC70000AD81 /* TutorialAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialAnimator.swift; sourceTree = "<group>"; };
 		FBF05EC3222FC81600460AF8 /* Private Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Private Extensions.swift"; sourceTree = "<group>"; };
 		FBF05EC5222FC8BC00460AF8 /* Public Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Public Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,7 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				A5C90C182226886A0099AF6E /* FocusLayer.swift */,
-				FBC6FCF222298DC70000AD81 /* FocusLayerManager.swift */,
+				FBC6FCF222298DC70000AD81 /* TutorialAnimator.swift */,
 				FBF05EC3222FC81600460AF8 /* Private Extensions.swift */,
 				FBF05EC5222FC8BC00460AF8 /* Public Extensions.swift */,
 				A5C90C102226883C0099AF6E /* FocusLayer.h */,
@@ -173,7 +173,7 @@
 				FBF05EC4222FC81600460AF8 /* Private Extensions.swift in Sources */,
 				A5C90C192226886A0099AF6E /* FocusLayer.swift in Sources */,
 				A5C90C222226898D0099AF6E /* TextBubbleViewController.swift in Sources */,
-				FBC6FCF322298DC70000AD81 /* FocusLayerManager.swift in Sources */,
+				FBC6FCF322298DC70000AD81 /* TutorialAnimator.swift in Sources */,
 				A5C90C1C222688B90099AF6E /* BubbleLayer.swift in Sources */,
 				FBF05EC6222FC8BC00460AF8 /* Public Extensions.swift in Sources */,
 			);

@@ -53,6 +53,7 @@ public class TutorialAnimator {
         guard let action = self.actions.first else {
             return
         }
+        sender.view.isUserInteractionEnabled = false
         if let view = action.view {
             self.reproducingFromFocus(sender: sender, on: view, text: action.text) {
                 self.focusCompletion(sender: sender, completion: completion)
@@ -106,7 +107,6 @@ public class TutorialAnimator {
     }
     
     private func focusCompletion(sender: UIViewController, completion: @escaping()->()) -> Void {
-        sender.view.isUserInteractionEnabled = false
         if self.actions.count > 1 {
             self.actions.removeFirst()
             self.run(sender: sender, completion: completion)
