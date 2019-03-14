@@ -79,5 +79,25 @@ public extension UIViewController {
         return false
     }
     
+    public func getAbsoluteFrameOf(subview:UIView) -> CGRect? {
+        var view = subview
+        var x = subview.frame.origin.x
+        var y = subview.frame.origin.y
+        while view != self.view {
+            if let parent = view.superview {
+                view = parent
+                x += view.frame.origin.x
+                y += view.frame.origin.y
+                if let scrollView = view as? UIScrollView {
+                    x -= scrollView.contentOffset.x
+                    y -= scrollView.contentOffset.y
+                }
+            } else {
+                return nil
+            }
+        }
+        let origin = CGPoint(x: x, y: y)
+        return CGRect(origin: origin, size: subview.frame.size)
+    }
 
 }
