@@ -13,43 +13,43 @@ import UIKit
 
 public extension UIViewController {
     
-    public func circleFocus(on frame:CGRect, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    func circleFocus(on frame:CGRect, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.circleFocus(on: frame, padding: padding, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    public func circleFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    func circleFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.circleFocus(on: view, padding: padding, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    public func circleFocus(on center:CGPoint, radius:CGFloat, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    func circleFocus(on center:CGPoint, radius:CGFloat, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.circleFocus(on: center, with: radius, animationDuration: animationDuration, completionHandler: completionHandler)
     }
     
-    public func rectFocus(on frame:CGRect, padding:CGFloat = 4, cornerRadius:CGFloat = 5, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    func rectFocus(on frame:CGRect, padding:CGFloat = 4, cornerRadius:CGFloat = 5, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.rectFocus(on: frame, padding: padding, cornerRadius: cornerRadius, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    public func rectFocus(on view:UIView, padding:CGFloat = 4, cornerRadius:CGFloat = 5, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    func rectFocus(on view:UIView, padding:CGFloat = 4, cornerRadius:CGFloat = 5, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.rectFocus(on: view, padding: padding, cornerRadius: cornerRadius, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    public func reproducingFromFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    func reproducingFromFocus(on view:UIView, padding:CGFloat = 4, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         let focusLayer = self.getFocusLayerIfPossible()
         focusLayer.reproducingFormFocus(on: view, padding: padding, animationDuration: animationDuration, completionHandler:completionHandler)
     }
     
-    public func removeFocus(animated:Bool, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
+    func removeFocus(animated:Bool, animationDuration:CFTimeInterval = DEFAULT_FOCUS_ANIMATION_DURATION,completionHandler:(()->())?) {
         if let focusLayer = detectFocusLayer() {
             focusLayer.dismiss(animated: true, animationDuration: animationDuration, completionHandler:completionHandler)
         }
     }
     
-    func getFocusLayerIfPossible() -> FocusLayer {
+    internal func getFocusLayerIfPossible() -> FocusLayer {
         let focusLayer = self.detectFocusLayer() ?? FocusLayer(owner: self.highestView)
         return focusLayer //?? FocusLayer(owner: self.view)
     }
@@ -79,7 +79,7 @@ public extension UIViewController {
         return false
     }
     
-    public func getAbsoluteFrameOf(subview:UIView) -> CGRect? {
+    func getAbsoluteFrameOf(subview:UIView) -> CGRect? {
         var view = subview
         var x = subview.frame.origin.x
         var y = subview.frame.origin.y
