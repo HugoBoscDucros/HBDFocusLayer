@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "HBDFocusLayer",
+        "repositoryURL": "/Users/hugobosc-ducros/Documents/dev/HBDFocusLayer",
+        "state": {
+          "branch": null,
+          "revision": "a21042fa1ce09222c6c4ed570dd63df3fda5163c",
+          "version": "1.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
