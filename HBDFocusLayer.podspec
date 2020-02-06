@@ -7,7 +7,7 @@ s.description      = 'Open source library. Focus Layer.'
 
 s.homepage         = 'https://github.com/HugoBoscDucros/HBDFocusLayer.git'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
-s.author           = { 'Hugo Bosc Ducros' => 'hugo@padam.io' }
+s.author           = { 'Hugo Bosc Ducros' => 'hugo.boscducros@gmail.com' }
 s.source           = { :git => 'https://github.com/HugoBoscDucros/HBDFocusLayer.git', :tag => s.version.to_s }
 s.swift_version    = '5.0'
 
