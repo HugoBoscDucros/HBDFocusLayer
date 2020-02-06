@@ -20,10 +20,6 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
     @IBOutlet weak var inSubview: UIButton!
     
     
-   
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Demo"
