@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FocusLayer
+import HBDFocusLayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -8,6 +8,8 @@
 
 import UIKit
 
+//test
+
 public class Pipo:NSObject {
     public var price:Float
     override public init() {

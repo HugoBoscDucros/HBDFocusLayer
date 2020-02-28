@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FocusLayer
+import HBDFocusLayer
 
 class DemoViewController: UIViewController,UIPopoverPresentationControllerDelegate {
 
@@ -18,10 +18,6 @@ class DemoViewController: UIViewController,UIPopoverPresentationControllerDelega
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var validate: UIButton!
     @IBOutlet weak var inSubview: UIButton!
-    
-    
-   
-    
     
     
     override func viewDidLoad() {
