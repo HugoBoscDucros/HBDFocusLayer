@@ -11,6 +11,7 @@
 		A540DFAF23ECBDE4006935CD /* HBDFocusLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A540DFA823ECBDE4006935CD /* HBDFocusLayer.framework */; };
 		A540DFB023ECBDE4006935CD /* HBDFocusLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A540DFA823ECBDE4006935CD /* HBDFocusLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A540DFB723ECBFA5006935CD /* HBDFocusLayer in Frameworks */ = {isa = PBXBuildFile; productRef = A540DFB623ECBFA5006935CD /* HBDFocusLayer */; };
+		A540DFBA23ED721F006935CD /* HBDFocusLayer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A540DFB923ED721F006935CD /* HBDFocusLayer.podspec */; };
 		A5C90C3122268A520099AF6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C90C3022268A520099AF6E /* AppDelegate.swift */; };
 		A5C90C3322268A520099AF6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C90C3222268A520099AF6E /* ViewController.swift */; };
 		A5C90C3822268A530099AF6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5C90C3722268A530099AF6E /* Assets.xcassets */; };
@@ -47,7 +48,7 @@
 		A540DFA823ECBDE4006935CD /* HBDFocusLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HBDFocusLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A540DFAA23ECBDE4006935CD /* HBDFocusLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBDFocusLayer.h; sourceTree = "<group>"; };
 		A540DFAB23ECBDE4006935CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A540DFB823ECC0C1006935CD /* HBDFocusLayer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HBDFocusLayer; path = ..; sourceTree = "<group>"; };
+		A540DFB923ED721F006935CD /* HBDFocusLayer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = HBDFocusLayer.podspec; path = ../HBDFocusLayer.podspec; sourceTree = "<group>"; };
 		A5C90C2D22268A520099AF6E /* FocusLayerTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusLayerTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C90C3022268A520099AF6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C90C3222268A520099AF6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +92,7 @@
 		A5C90C2422268A520099AF6E = {
 			isa = PBXGroup;
 			children = (
-				A540DFB823ECC0C1006935CD /* HBDFocusLayer */,
+				A540DFB923ED721F006935CD /* HBDFocusLayer.podspec */,
 				A5C90C2F22268A520099AF6E /* FocusLayerTestProject */,
 				A540DFA923ECBDE4006935CD /* Supporting files */,
 				A5C90C2E22268A520099AF6E /* Products */,
@@ -227,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A540DFBA23ED721F006935CD /* HBDFocusLayer.podspec in Resources */,
 				A5C90C3B22268A530099AF6E /* LaunchScreen.storyboard in Resources */,
 				A5C90C3822268A530099AF6E /* Assets.xcassets in Resources */,
 				A5C90C4722268B0B0099AF6E /* Main.storyboard in Resources */,
