@@ -12,6 +12,6 @@ s.source           = { :git => 'https://github.com/HugoBoscDucros/HBDFocusLayer.
 s.swift_version    = '5.0'
 
 s.ios.deployment_target = '9.0'
-s.source_files = ['HBDFocusLayer/Supporting files/*.{h,m,swift,xib}', 'HBDFocusLayer/Sources/HBDFoculLayer/*.{h,m,swift,xib}']
+s.source_files = ['Supporting files/*.{h,m,swift,xib}', 'Sources/**/*.{h,m,swift,xib}']
 
 end
