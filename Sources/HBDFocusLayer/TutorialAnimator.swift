@@ -27,7 +27,10 @@ public class TutorialAnimator {
     
     public init () {}
     
-    
+    public var bubbleBackgroundColor: UIColor?
+    public var bubbleFont: UIFont?
+    public var bubbleTextColor: UIColor?
+
     
     //MARK: - Actions Handlers
     
@@ -71,6 +74,20 @@ public class TutorialAnimator {
     }
     
     
+    func instanciateBubbleController(text: String, focusLayer: FocusLayer) -> TextBubbleViewController {
+        let vc = TextBubbleViewController()
+        vc.preparePopover(with: text, focusLayer: focusLayer)
+        if let backgroundColor = self.bubbleBackgroundColor {
+            vc.view.backgroundColor = backgroundColor
+        }
+        if let textColor = self.bubbleTextColor {
+            vc.label.textColor = textColor
+        }
+        if let font = self.bubbleFont {
+            vc.label.font = font
+        }
+        return vc
+    }
 
     //MARK:- Utils
     
@@ -80,8 +97,9 @@ public class TutorialAnimator {
         let focusLayer = sender.getFocusLayerIfPossible()
         focusLayer.reproducingFormFocus(on: view, padding: padding, animationDuration: animationDuration) {
             focusLayer.popoverCompletion = completionHandler
-            let vc = TextBubbleViewController()
-            vc.preparePopover(with: text, focusLayer: focusLayer)
+//            let vc = TextBubbleViewController()
+//            vc.preparePopover(with: text, focusLayer: focusLayer)
+            let vc = self.instanciateBubbleController(text: text, focusLayer: focusLayer)
             sender.present(vc, animated: true, completion: nil)
         }
     }
@@ -90,8 +108,9 @@ public class TutorialAnimator {
         let focusLayer = sender.getFocusLayerIfPossible()
         focusLayer.circleFocus(on: center, with: radius, animationDuration: animationDuration) {
             focusLayer.popoverCompletion = completionHandler
-            let vc = TextBubbleViewController()
-            vc.preparePopover(with: text, focusLayer: focusLayer)
+//            let vc = TextBubbleViewController()
+//            vc.preparePopover(with: text, focusLayer: focusLayer)
+            let vc = self.instanciateBubbleController(text: text, focusLayer: focusLayer)
             sender.present(vc, animated: true, completion: nil)
         }
     }
@@ -100,8 +119,9 @@ public class TutorialAnimator {
         let focusLayer = sender.getFocusLayerIfPossible()
         focusLayer.rectFocus(on: frame, padding: padding, cornerRadius: cornerRadius, animationDuration: animationDuration) {
             focusLayer.popoverCompletion = completionHandler
-            let vc = TextBubbleViewController()
-            vc.preparePopover(with: text, focusLayer: focusLayer)
+//            let vc = TextBubbleViewController()
+//            vc.preparePopover(with: text, focusLayer: focusLayer)
+            let vc = self.instanciateBubbleController(text: text, focusLayer: focusLayer)
             sender.present(vc, animated: true, completion: nil)
         }
     }
