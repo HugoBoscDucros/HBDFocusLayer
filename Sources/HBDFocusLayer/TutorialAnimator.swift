@@ -131,6 +131,9 @@ public class TutorialAnimator {
             self.actions.removeFirst()
             self.run(sender: sender, completion: completion)
         } else {
+            if self.actions.count > 0 {
+                self.actions.removeFirst()
+            }
             sender.removeFocus(animated: true, completionHandler: {
                 sender.view.isUserInteractionEnabled = true
             })
