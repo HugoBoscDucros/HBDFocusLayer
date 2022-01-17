@@ -31,7 +31,7 @@ public class TextBubbleViewController: UIViewController {
     }
      
     public init() {
-        super.init(nibName: "TextBubbleViewController", bundle: Bundle(for: TextBubbleViewController.self))
+        super.init(nibName: "TextBubbleViewController", bundle: .module)
     }
     
     required init?(coder aDecoder: NSCoder) {
